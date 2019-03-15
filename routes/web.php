@@ -43,11 +43,11 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::prefix('users')->group(function() {
             Route::get('/', 'Users@index')->name('users');
-            Route::get('/newUser', 'Users@newUser')->name('newUser');
-            Route::get('/editUser/{edit_userID}', 'Users@editUser')->name('editUser');
-            Route::post('/saveUser', 'Users@saveUser')->name('saveUser');
-            Route::post('/updateUser', 'Users@updateUser')->name('updateUSer');
-            Route::post('/deleteUser', 'Users@deleteUser')->name('deleteUser');
+            Route::get('/newuser', 'Users@newUser')->name('newUser');
+            Route::get('/edituser/{edit_userID}', 'Users@editUser')->name('editUser');
+            Route::post('/saveuser', 'Users@saveUser')->name('saveUser');
+            Route::post('/updateuser', 'Users@updateUser')->name('updateUser');
+            Route::post('/deleteuser', 'Users@deleteUser')->name('deleteUser');
         });
 
         Route::prefix('routes')->group(function() {

@@ -32,24 +32,26 @@
 
         <tbody>
             @foreach ($all as $one)
-                <td class="text-center">{{ $one->id }}</td>
-                <td class="text-center">{{ $one->name }}</td>
-                <td class="text-center">{{ $one->getRole->role }}</td>
-                <td class="text-center">{{ $one->created_at }}</td>
-                <td class="text-center">
-                    @if (auth()->user()->role_id !== 1)
-                        <a href="#" class="btn btn-warning">EDIT</a>
-                    @endif
-                </td>
-                <td class="text-center">
-                    @if ($one->getRole->id !== 1) {{-- super --}}
-                        <form action="#" method="POST">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="delete_userID" value="{{ $one->id }}">
-                            <button type="submit" class="btn btn-danger">DELETE</button>
-                        </form>
-                    @endif
-                </td>
+                <tr>
+                    <td class="text-center">{{ $one->id }}</td>
+                    <td class="text-center">{{ $one->name }}</td>
+                    <td class="text-center">{{ $one->getRole->role }}</td>
+                    <td class="text-center">{{ $one->created_at }}</td>
+                    <td class="text-center">
+                        @if ($one->getRole->id >= auth()->user()->role_id) {{-- logged user role id is better ( better ranking ) then viewed users role id --}}
+                            <a href="{{ route('editUser', $one->id) }}" class="btn btn-warning">EDIT</a>
+                        @endif
+                    </td>
+                    <td class="text-center">
+                        @if ($one->getRole->id >= auth()->user()->role_id && $one->getRole->id !== 1) {{-- logged user role id is better ( better ranking ) then viewed users role id & cannot delete super user --}}
+                            <form action="{{ route('deleteUser') }}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="delete_userID" value="{{ $one->id }}">
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                            </form>
+                        @endif
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>

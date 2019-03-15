@@ -18,7 +18,7 @@ class Users extends Controller
         dd(request()->all());
     }
 
-    public function editUser()
+    public function editUser($id)
     {
         dd(request()->all());
     }

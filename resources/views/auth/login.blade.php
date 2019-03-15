@@ -7,12 +7,12 @@
             <form action="{{ route('login') }}" method="POST">
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="admin@admin.com" autofocus required>
+                    <input type="email" name="email" id="email" class="form-control" autofocus required>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="lozinka" required>
+                    <input type="password" name="password" id="password" class="form-control" required>
                 </div>
 
                 {{ csrf_field() }}
