@@ -43,6 +43,18 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::prefix('users')->group(function() {
             Route::get('/', 'Users@index')->name('users');
+            Route::get('/newUser', 'Users@newUser')->name('newUser');
+            Route::get('/editUser/{edit_userID}', 'Users@editUser')->name('editUser');
+            Route::post('/saveUser', 'Users@saveUser')->name('saveUser');
+            Route::post('/updateUser', 'Users@updateUser')->name('updateUSer');
+            Route::post('/deleteUser', 'Users@deleteUser')->name('deleteUser');
+        });
+
+        Route::prefix('routes')->group(function() {
+            Route::get('/', 'Roles@index')->name('roles');
+            Route::post('/saveRole', 'Roles@saveRole')->name('saveRole');
+            Route::post('/updateRole', 'Roles@updateRole')->name('updateRole');
+            Route::post('/deleteRole', 'Roles@deleteRole')->name('deleteRole');
         });
     });
 });

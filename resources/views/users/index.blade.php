@@ -3,8 +3,14 @@
 @section('content')
     <div class="d-block m-5 p-5">
         <div class="row">
-            <div class="col-md-2">ROLES</div>
-            <div class="col-md-2">NEW USER</div>
+            <div class="col-md-2">
+                @if (auth()->user()->role_id === 1) {{-- super--}}
+                    <a href="{{ route('roles') }}" class="btn btn-info">ROLES</a>
+                @endif
+            </div>
+            <div class="col-md-2">
+                <a href="{{ route('newUser') }}" class="btn btn-info">NEW USER</a>
+            </div>
             <div class="col-md-2"></div>
             <div class="col-md-2"></div>
             <div class="col-md-2"></div>
@@ -30,8 +36,20 @@
                 <td class="text-center">{{ $one->name }}</td>
                 <td class="text-center">{{ $one->getRole->role }}</td>
                 <td class="text-center">{{ $one->created_at }}</td>
-                <td class="text-center">EDIT</td>
-                <td class="text-center">DELETE</td>
+                <td class="text-center">
+                    @if (auth()->user()->role_id !== 1)
+                        <a href="#" class="btn btn-warning">EDIT</a>
+                    @endif
+                </td>
+                <td class="text-center">
+                    @if ($one->getRole->id !== 1) {{-- super --}}
+                        <form action="#" method="POST">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="delete_userID" value="{{ $one->id }}">
+                            <button type="submit" class="btn btn-danger">DELETE</button>
+                        </form>
+                    @endif
+                </td>
             @endforeach
         </tbody>
     </table>
