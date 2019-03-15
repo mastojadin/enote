@@ -7,7 +7,7 @@
             <form action="{{ route('login') }}" method="POST">
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="admin@admin.com" required>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="admin@admin.com" autofocus required>
                 </div>
 
                 <div class="form-group">

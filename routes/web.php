@@ -40,6 +40,10 @@ Route::post('password/reset', function(){
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('admin')->group(function () {
         Route::get('dashboard', 'Dashboard@dashboard')->name('dashboard');
+
+        Route::prefix('users')->group(function() {
+            Route::get('/', 'Users@index')->name('users');
+        });
     });
 });
 

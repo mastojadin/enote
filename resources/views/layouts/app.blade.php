@@ -16,19 +16,23 @@
 
 <body>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-                @include('parts.navbar')
-            </div>
+    @if (auth()->guest())
+        @yield('content')
+    @else
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 pt-1">
+                    @include('parts.sidebar')
+                </div>
 
-            <div class="col-md-8">
-                <div class="container">
-                    @yield('content')
+                <div class="col-md-10">
+                    <div class="container m-5">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
