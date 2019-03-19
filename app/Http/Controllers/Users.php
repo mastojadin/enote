@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 
 class Users extends Controller
 {
     public function index()
     {
-        $all = User::with(['getRole', 'getAboutUser'])->get();
+        $all = User::getAllUsers(auth()->user()->role_id)->get();
 
         return view('users.index', compact('all'));
     }
 
     public function newUser()
     {
-        dd(request()->all());
+        $roles = Role::getAllRoles(auth()->user()->role_id)->get();
+
+        return view('users.new', compact('roles'));
     }
 
     public function editUser($id)
@@ -25,6 +28,13 @@ class Users extends Controller
 
     public function saveUser()
     {
+        request()->validate([
+            'role' => ['required'],
+            'name' => ['required', 'alpha_num'],
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
         dd(request()->all());
     }
 

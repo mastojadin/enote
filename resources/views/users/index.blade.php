@@ -27,6 +27,7 @@
                 <th class="text-center">Date of creation</th>
                 <th class="text-center"></th>
                 <th class="text-center"></th>
+                <th class="text-center"></th>
             </tr>
         </thead>
 
@@ -37,6 +38,11 @@
                     <td class="text-center">{{ $one->name }}</td>
                     <td class="text-center">{{ $one->getRole->role }}</td>
                     <td class="text-center">{{ $one->created_at }}</td>
+                    <td class="text-center">
+                        @if ($one->getRole->id >= auth()->user()->role_id) {{-- logged user role id is better ( better ranking ) then viewed users role id --}}
+                            VIEW
+                        @endif
+                    </td>
                     <td class="text-center">
                         @if ($one->getRole->id >= auth()->user()->role_id) {{-- logged user role id is better ( better ranking ) then viewed users role id --}}
                             <a href="{{ route('editUser', $one->id) }}" class="btn btn-warning">EDIT</a>

@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('admin')->group(function () {
         Route::get('dashboard', 'Dashboard@dashboard')->name('dashboard');
 
-        Route::prefix('users')->group(function() {
+        Route::group(['middleware' => 'adminCheck', 'prefix' => 'users'], function () {
             Route::get('/', 'Users@index')->name('users');
             Route::get('/newuser', 'Users@newUser')->name('newUser');
             Route::get('/edituser/{edit_userID}', 'Users@editUser')->name('editUser');
@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/deleteuser', 'Users@deleteUser')->name('deleteUser');
         });
 
-        Route::prefix('routes')->group(function() {
+        Route::group(['middleware' => 'superCheck', 'prefix' => 'roles'], function () {
             Route::get('/', 'Roles@index')->name('roles');
             Route::post('/saveRole', 'Roles@saveRole')->name('saveRole');
             Route::post('/updateRole', 'Roles@updateRole')->name('updateRole');

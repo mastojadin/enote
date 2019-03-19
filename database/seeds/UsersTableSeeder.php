@@ -16,17 +16,8 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'super',
                 'email' => 'super@super.com',
-                'password' => bcrypt('lozinka'),
+                'password' => bcrypt('123'),
                 'role_id' => 1,
-                'email_verified_at' => date('Y-m-d H:i:s'),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ],
-            [
-                'name' => 'admin',
-                'email' => 'admin@admin.com',
-                'password' => bcrypt('lozinka'),
-                'role_id' => 2,
                 'email_verified_at' => date('Y-m-d H:i:s'),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),

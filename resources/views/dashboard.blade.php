@@ -4,6 +4,8 @@
     <div class="d-block">
         <div class="d-block float-left">
             {{ auth()->user()->name }}
+            <br>
+            {{ var_dump(auth()->user()->role_id) }}
         </div>
 
         <form action="{{ route('logout') }}" method="POST" class="float-right">

@@ -17,4 +17,9 @@ class User extends Model
     {
         return $this->belongsTo('App\Models\Role', 'role_id');
     }
+
+    public function scopeGetAllUsers($query, $role_id)
+    {
+        return $query->with(['getRole', 'getAboutUser'])->where('id', '>=', $role_id);
+    }
 }

@@ -12,4 +12,9 @@ class Role extends Model
     {
         return $this->hasMany('App\Models\User', 'role_id', 'id');
     }
+
+    public function scopeGetAllRoles($query, $role_id)
+    {
+        return $query->where('id', '>=', $role_id);
+    }
 }
