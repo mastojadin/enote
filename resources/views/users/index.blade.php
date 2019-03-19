@@ -47,7 +47,7 @@
                             <form action="{{ route('deleteUser') }}" method="POST">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="delete_userID" value="{{ $one->id }}">
-                                <button type="submit" class="btn btn-danger">DELETE</button>
+                                <button type="submit" class="btn btn-danger deletebtn">DELETE</button>
                             </form>
                         @endif
                     </td>

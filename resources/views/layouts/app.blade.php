@@ -26,6 +26,7 @@
                 </div>
 
                 <div class="col-md-10">
+                    @include('parts.alerts')
                     <div class="container m-5">
                         @yield('content')
                     </div>

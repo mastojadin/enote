@@ -5,3 +5,13 @@ $.each($('.sidebarlink'), function() {
         $(this).addClass('active');
     }
 });
+
+// delete button confirmation
+$('.deletebtn').on('click', function() {
+    return confirm('Are you sure?!');
+});
+
+// myalert div
+$('.myalert').on('click', function() {
+    $('.alert').alert('close');
+});

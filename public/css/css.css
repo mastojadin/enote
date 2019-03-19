@@ -5,3 +5,9 @@
 a, a:link, a:visited, a:hover, a:active {
     text-decoration: none;
 }
+.myalert {
+    position: fixed;
+    top:0;
+    right:0;
+    width: 75%;
+}

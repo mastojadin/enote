@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('parts.back_button')
-
+    @include('parts.back_button', ['whereTo' => 'users'])
     <div class="d-block p-5">
         <form action="{{ route('saveRole') }}" method="POST">
             <div class="form-group">
@@ -39,7 +38,7 @@
                     <form action="{{ route('deleteRole') }}" method="POST">
                         {{ csrf_field() }}
                         <input type="hidden" name="delete_roleID" value="{{ $one->id }}">
-                        <button type="submit" class="btn btn-danger">DELETE</button>
+                        <button type="submit" class="btn btn-danger deletebtn">DELETE</button>
                     </form>
                 </td>
             </tr>
