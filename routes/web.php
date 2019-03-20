@@ -37,25 +37,23 @@ Route::post('password/reset', function(){
     return redirect()->route('login');
 });
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::prefix('admin')->group(function () {
-        Route::get('dashboard', 'Dashboard@dashboard')->name('dashboard');
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
+    Route::get('dashboard', 'Dashboard@dashboard')->name('dashboard');
 
-        Route::group(['middleware' => 'adminCheck', 'prefix' => 'users'], function () {
-            Route::get('/', 'Users@index')->name('users');
-            Route::get('/newuser', 'Users@newUser')->name('newUser');
-            Route::get('/edituser/{edit_userID}', 'Users@editUser')->name('editUser');
-            Route::post('/saveuser', 'Users@saveUser')->name('saveUser');
-            Route::post('/updateuser', 'Users@updateUser')->name('updateUser');
-            Route::post('/deleteuser', 'Users@deleteUser')->name('deleteUser');
-        });
+    Route::group(['middleware' => 'adminCheck', 'prefix' => 'users'], function () {
+        Route::get('/', 'Users@index')->name('users');
+        Route::get('/newuser', 'Users@newUser')->name('newUser');
+        Route::get('/edituser/{edit_userID}', 'Users@editUser')->name('editUser');
+        Route::post('/saveuser', 'Users@saveUser')->name('saveUser');
+        Route::post('/updateuser', 'Users@updateUser')->name('updateUser');
+        Route::post('/deleteuser', 'Users@deleteUser')->name('deleteUser');
+    });
 
-        Route::group(['middleware' => 'superCheck', 'prefix' => 'roles'], function () {
-            Route::get('/', 'Roles@index')->name('roles');
-            Route::post('/saveRole', 'Roles@saveRole')->name('saveRole');
-            Route::post('/updateRole', 'Roles@updateRole')->name('updateRole');
-            Route::post('/deleteRole', 'Roles@deleteRole')->name('deleteRole');
-        });
+    Route::group(['middleware' => 'superCheck', 'prefix' => 'roles'], function () {
+        Route::get('/', 'Roles@index')->name('roles');
+        Route::post('/saveRole', 'Roles@saveRole')->name('saveRole');
+        Route::post('/updateRole', 'Roles@updateRole')->name('updateRole');
+        Route::post('/deleteRole', 'Roles@deleteRole')->name('deleteRole');
     });
 });
 
