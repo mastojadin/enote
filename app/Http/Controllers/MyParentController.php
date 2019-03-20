@@ -10,9 +10,9 @@ class MyParentController extends Controller
     protected $alert;
     protected $log;
 
-    public function __construct()
+    public function __construct(Alerts $alert, L $log)
     {
-        $this->alert = new Alerts();
-        $this->log = new L();
+        $this->alert = $alert;
+        $this->log = $log;
     }
 }
