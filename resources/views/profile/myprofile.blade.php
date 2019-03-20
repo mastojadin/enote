@@ -5,9 +5,6 @@
         <div class="row">
             <div class="col-md-4">
                 <p>
-                    <em>{{ $user->name }}</em>
-                </p>
-                <p>
                     <em>{{ $user->email }}</em>
                 </p>
             </div>
@@ -19,6 +16,19 @@
                 <label for="pic">MY PROFILE IMAGE</label>
                 <input type="file" name="pic" id="pic" class="form-control">
             </div>
+        </div>
+
+        <div class="form-group">
+            <label for="first_name">FIRST NAME</label>
+            <input
+                type="text"
+                name="first_name"
+                id="first_name"
+                class="form-control"
+                @if ($user->getAboutUser != null)
+                    value="{{ $user->getAboutUser->first_name }}"
+                @endif
+            >
         </div>
 
         <div class="form-group">

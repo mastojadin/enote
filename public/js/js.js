@@ -18,3 +18,6 @@ $('.deletebtn').on('click', function() {
 $('.myalert').on('click', function() {
     $('.alert').alert('close');
 });
+setTimeout(function(){
+    $('.alert').alert('close');
+}, 2000);

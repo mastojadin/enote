@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 
+use App\Helpers\Alerts;
+use App\Helpers\Logs as L;
+
 class Users extends Controller
 {
     public function index()
@@ -24,6 +27,7 @@ class Users extends Controller
     public function editUser($id)
     {
         $user = User::find($id);
+
         // check if logged role id is better ( better ranking ) than viewed user rule id
         if ($user->role_id <= auth()->user()->role_id && $user->id != auth()->user()->id) {
             return redirect()->route('users');
@@ -48,17 +52,22 @@ class Users extends Controller
         $role_id = request('role');
         $password = request('password');
 
-        $user = new User();
-        $user->name = $name;
-        $user->email = $email;
-        $user->role_id = $role_id;
-        $user->password = bcrypt($password);
-        $user->save();
+        try {
+            $user = new User();
+            $user->name = $name;
+            $user->email = $email;
+            $user->role_id = $role_id;
+            $user->password = bcrypt($password);
+            $user->save();
+        } catch(\Exception $e) {
+            L::logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
+            session()->flash('myAlert', Alerts::getAlert('10'));
+            return redirect()->back();
+        }
 
         // send email
 
-        session()->flash('myAlert', ['type' => 'success', 'msg' => 'Action successful.']);
-
+        session()->flash('myAlert', Alerts::getAlert('00'));
         return redirect()->back();
     }
 
@@ -76,30 +85,41 @@ class Users extends Controller
         $password = request('password', false);
         $role_id = request('role');
 
-        $user = User::find($id);
-        $user->name = $name;
-        $user->email = $email;
-        $user->role_id = $role_id;
-        if ($password) $user->password = bcrypt($password);
-        $user->save();
+        try {
+            $user = User::find($id);
+            $user->name = $name;
+            $user->email = $email;
+            $user->role_id = $role_id;
+            if ($password) $user->password = bcrypt($password);
+            $user->save();
+        } catch(\Exception $e) {
+            L::logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
+            session()->flash('myAlert', Alerts::getAlert('10'));
+            return redirect()->back();
+        }
 
         // send email
 
-        session()->flash('myAlert', ['type' => 'success', 'msg' => 'Action successful.']);
-
+        session()->flash('myAlert', Alerts::getAlert('00'));
         return redirect()->back();
     }
 
     public function deleteUser()
     {
         $id = request('delete_userID');
-        $user = User::find($id);
-        $user->delete();
+
+        try {
+            $user = User::find($id);
+            $user->delete();
+        } catch(\Exception $e) {
+            L::logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
+            session()->flash('myAlert', Alerts::getAlert('10'));
+            return redirect()->back();
+        }
 
         // send email
 
-        session()->flash('myAlert', ['type' => 'success', 'msg' => 'Action successful.']);
-
+        session()->flash('myAlert', Alerts::getAlert('00'));
         return redirect()->back();
     }
 }

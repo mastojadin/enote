@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+
 use App\Rules\Lowercase;
+
+use App\Helpers\Alerts;
+use App\Helpers\Logs as L;
 
 class Roles extends Controller
 {
@@ -21,12 +25,18 @@ class Roles extends Controller
         ]);
 
         $newRole = request('role');
-        $role = new Role;
-        $role->role = $newRole;
-        $role->save();
 
-        session()->flash('myAlert', ['type' => 'success', 'msg' => 'Action successful.']);
+        try {
+            $role = new Role;
+            $role->role = $newRole;
+            $role->save();
+        } catch(\Exception $e) {
+            L::logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
+            session()->flash('myAlert', Alerts::getAlert('10'));
+            return redirect()->back();
+        }
 
+        session()->flash('myAlert', Alerts::getAlert('00'));
         return redirect()->back();
     }
 
@@ -38,23 +48,35 @@ class Roles extends Controller
 
         $newRole = request('edit_role');
         $id = request('edit_roleID');
-        $role = Role::find($id);
-        $role->role = $newRole;
-        $role->save();
 
-        session()->flash('myAlert', ['type' => 'success', 'msg' => 'Action successful.']);
+        try {
+            $role = Role::find($id);
+            $role->role = $newRole;
+            $role->save();
+        } catch(\Exception $e) {
+            L::logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
+            session()->flash('myAlert', Alerts::getAlert('10'));
+            return redirect()->back();
+        }
 
+        session()->flash('myAlert', Alerts::getAlert('00'));
         return redirect()->back();
     }
 
     public function deleteRole()
     {
         $id = request('delete_roleID');
-        $role = Role::find($id);
-        $role->delete();
 
-        session()->flash('myAlert', ['type' => 'success', 'msg' => 'Action successful.']);
+        try {
+            $role = Role::find($id);
+            $role->delete();
+        } catch(\Exception $e) {
+            L::logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
+            session()->flash('myAlert', Alerts::getAlert('10'));
+            return redirect()->back();
+        }
 
+        session()->flash('myAlert', Alerts::getAlert('00'));
         return redirect()->back();
     }
 }
