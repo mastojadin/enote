@@ -3,7 +3,7 @@
 @section('content')
     @include('parts.back_button', ['whereTo' => 'users'])
 
-    <form action="{{ route('saveUser') }}" method="POST">
+    <form action="{{ route('updateUser') }}" method="POST">
         <div class="form-group">
             <label for="role">ROLE</label>
             <select
@@ -16,7 +16,7 @@
                 @foreach ($roles as $one)
                     <option
                         value="{{ $one->id }}"
-                        @if (old('role') != null && old('role') == $one->id)
+                        @if ($user->role_id == $one->id)
                             {{ 'selected' }}
                         @endif
                     >{{ $one->role }}</option>
@@ -33,9 +33,7 @@
                 class="form-control"
                 pattern="[a-zA-Z0-9]+"
                 required="required"
-                @if (old('name') != null)
-                    value="{{ old('name') }}"
-                @endif
+                value="{{ $user->name }}"
             >
         </div>
 
@@ -47,9 +45,7 @@
                 id="email"
                 class="form-control"
                 required="required"
-                @if (old('email') != null)
-                    value="{{ old('email') }}"
-                @endif
+                value="{{ $user->email }}"
             >
         </div>
 
@@ -60,17 +56,15 @@
                 name="password"
                 id="password"
                 class="form-control"
-                required="required"
-                @if (old('password') != null)
-                    value="{{ old('password') }}"
-                @endif
             >
         </div>
 
         {{ csrf_field() }}
 
+        <input type="hidden" name="edit_userID" value="{{ $user->id }}">
+
         <div class="form-group">
-            <button type="submit" class="btn btn-success form-control">SAVE NEW USER</button>
+            <button type="submit" class="btn btn-warning form-control">EDIT USER</button>
         </div>
     </form>
 @endsection

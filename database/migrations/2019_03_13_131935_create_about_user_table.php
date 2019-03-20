@@ -25,6 +25,7 @@ class CreateAboutUserTable extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('state');
+            $table->string('deleted')->default('0');
             $table->timestamps();
         });
     }

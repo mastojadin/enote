@@ -6,7 +6,16 @@
     <div class="d-block p-5">
         <form action="{{ route('saveRole') }}" method="POST">
             <div class="form-group">
-                <input type="text" name="role" id="role" class="form-control">
+                <label for="role">NEW ROLE</label>
+                <input
+                    type="text"
+                    name="role"
+                    id="role"
+                    class="form-control"
+                    required="required"
+                    autocomplete="off"
+                    pattern="[a-z]+"
+                >
             </div>
 
             {{ csrf_field() }}
@@ -27,7 +36,16 @@
                 <td class="text-center">{{ $one->id }}</td>
                 <td class="text-center">
                     <form action="{{ route('updateRole') }}" method="POST">
-                        <input type="text" name="edit_role" id="new_role" class="form-control" value="{{ $one->role }}">
+                        <input
+                            type="text"
+                            name="edit_role"
+                            id="new_role"
+                            class="form-control"
+                            value="{{ $one->role }}"
+                            required="required"
+                            autocomplete="off"
+                            pattern="[a-z]+" 
+                        >
                 </td>
                 <td class="text-center">
                         <input type="hidden" name="edit_roleID" value="{{ $one->id }}">
