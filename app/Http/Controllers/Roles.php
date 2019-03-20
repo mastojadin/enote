@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
-
 use App\Rules\Lowercase;
 
 class Roles extends Controller

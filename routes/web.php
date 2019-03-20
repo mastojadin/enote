@@ -55,6 +55,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
         Route::post('/updateRole', 'Roles@updateRole')->name('updateRole');
         Route::post('/deleteRole', 'Roles@deleteRole')->name('deleteRole');
     });
+
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/', 'Profile@myprofile')->name('myprofile');
+        Route::post('updateprofile', 'Profile@update')->name('updateAboutUser');
+    });
 });
 
 Auth::routes();

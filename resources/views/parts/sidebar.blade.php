@@ -19,5 +19,7 @@
         <a href="#" class="list-group-item list-group-action sidebarlink">MY TEACHER</a>
     @endif
 
-    <a href="#" class="list-group-item list-group-action sidebarlink">MY PROFILE</a>
+    @if (auth()->user()->role_id !== 1) {{-- not super --}}
+        <a href="{{ route('myprofile') }}" class="list-group-item list-group-action sidebarlink">PROFILE</a>
+    @endif
 </div>
