@@ -8,10 +8,7 @@ use App\Rules\Lowercase;
 use App\Rules\AlphaSpaces;
 use App\Rules\AlphaNumSpaces;
 
-use App\Helpers\Alerts;
-use App\Helpers\Logs as L;
-
-class Profile extends Controller
+class Profile extends MyParentController
 {
     public function myprofile()
     {
@@ -63,8 +60,8 @@ class Profile extends Controller
             $about_user->state = $state;
             $about_user->save;
         } catch(\Exception $e) {
-            L::logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
-            session()->flash('myAlert', Alerts::getAlert('10'));
+            $this->log->logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
+            session()->flash('myAlert', $this->alert->getAlert('10'));
             return redirect()->back();
         }
 
@@ -76,8 +73,8 @@ class Profile extends Controller
             try {
                 move_uploaded_file($pic_tmpname, public_path('profile_images/' . $pic_name . '.' . $pic_type));
             } catch(\Exception $e) {
-                L::logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
-                session()->flash('myAlert', Alerts::getAlert('11'));
+                $this->log->logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
+                session()->flash('myAlert', $this->alert->getAlert('11'));
                 return redirect()->back();
             }
         }

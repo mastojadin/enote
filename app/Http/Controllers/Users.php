@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 
-use App\Helpers\Alerts;
-use App\Helpers\Logs as L;
-
-class Users extends Controller
+class Users extends MyParentController
 {
     public function index()
     {
@@ -60,14 +57,14 @@ class Users extends Controller
             $user->password = bcrypt($password);
             $user->save();
         } catch(\Exception $e) {
-            L::logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
-            session()->flash('myAlert', Alerts::getAlert('10'));
+            $this->log->logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
+            session()->flash('myAlert', $this->alert->getAlert('10'));
             return redirect()->back();
         }
 
         // send email
 
-        session()->flash('myAlert', Alerts::getAlert('00'));
+        session()->flash('myAlert', $this->alert->getAlert('00'));
         return redirect()->back();
     }
 
@@ -93,14 +90,14 @@ class Users extends Controller
             if ($password) $user->password = bcrypt($password);
             $user->save();
         } catch(\Exception $e) {
-            L::logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
-            session()->flash('myAlert', Alerts::getAlert('10'));
+            $this->log->logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
+            session()->flash('myAlert', $this->alert->getAlert('10'));
             return redirect()->back();
         }
 
         // send email
 
-        session()->flash('myAlert', Alerts::getAlert('00'));
+        session()->flash('myAlert', $this->alert->getAlert('00'));
         return redirect()->back();
     }
 
@@ -112,14 +109,14 @@ class Users extends Controller
             $user = User::find($id);
             $user->delete();
         } catch(\Exception $e) {
-            L::logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
-            session()->flash('myAlert', Alerts::getAlert('10'));
+            $this->log->logme('debug', $e->getMessage(), __CLASS__, __LINE__, auth()->user()->id);
+            session()->flash('myAlert', $this->alert->getAlert('10'));
             return redirect()->back();
         }
 
         // send email
 
-        session()->flash('myAlert', Alerts::getAlert('00'));
+        session()->flash('myAlert', $this->alert->getAlert('00'));
         return redirect()->back();
     }
 }
