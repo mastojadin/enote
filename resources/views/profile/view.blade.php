@@ -22,22 +22,26 @@
             </div>
         </div>
 
-        @if ($user->getAboutUser != null)
-            @foreach($user->getAboutUser as $key => $value)
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="text-center">
-                            {{ $key }}
-                        </p>
-                    </div>
+        <div class="d-block mt-5">
+            @if ($user->getAboutUser != null)
+                @foreach($user->getAboutUser->toArray() as $key => $value)
+                    @if ($key != 'id' && $key != 'user_id' && $key != 'deleted')
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-center">
+                                    {{ $key }}
+                                </p>
+                            </div>
 
-                    <div class="col-md-6">
-                        <p class="text-center">
-                            {{ $value }}
-                        </p>
-                    </div>
-                </div>
-            @endforeach
-        @endif
+                            <div class="col-md-6">
+                                <p class="text-center">
+                                    {{ $value }}
+                                </p>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            @endif
+        </div>
     </div>
 @endsection

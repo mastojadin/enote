@@ -9,8 +9,11 @@ class Users extends MyParentController
 {
     public function index()
     {
-        $all = User::getAllUsers(auth()->user()->role_id)->get();
+        $search_role = request('search_role', false);
+        $search_name = request('search_name', false);
 
+        $all = User::getAllUsers(auth()->user()->role_id, $search_role, $search_name)->get();
+        
         return view('users.index', compact('all'));
     }
 
