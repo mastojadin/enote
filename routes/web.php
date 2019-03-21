@@ -59,6 +59,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', 'Profile@myprofile')->name('myprofile');
         Route::post('updateprofile', 'Profile@update')->name('updateAboutUser');
+        Route::get('/view/{view_userID}', 'Profile@viewme')->name('viewProfile');
     });
 });
 

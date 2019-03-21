@@ -40,7 +40,7 @@
                     <td class="text-center">{{ $one->created_at }}</td>
                     <td class="text-center">
                         @if ($one->getRole->id >= auth()->user()->role_id) {{-- logged user role id is better ( better ranking ) then viewed users role id --}}
-                            VIEW
+                            <a href="{{ route('viewProfile', $one->id) }}" class="btn btn-info">VIEW</a>
                         @endif
                     </td>
                     <td class="text-center">

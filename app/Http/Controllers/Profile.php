@@ -82,4 +82,16 @@ class Profile extends MyParentController
         session()->flash('myAlert', Alerts::getAlert('00'));
         return redirect()->back();
     }
+
+    public function viewme($id)
+    {
+        $user = User::where('id', '=', $id)->with('getAboutUser')->get()[0];
+
+        // check if logged role id is better ( better ranking ) than viewed user rule id
+        if ($user->role_id <= auth()->user()->role_id && $user->id != auth()->user()->id) {
+            return redirect()->route('users');
+        }
+
+        return view('profile.view', compact('user'));
+    }
 }
