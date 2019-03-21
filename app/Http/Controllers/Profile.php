@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Rules\Lowercase;
 use App\Rules\AlphaSpaces;
 use App\Rules\AlphaNumSpaces;
+use App\Rules\LastName;
+use App\Rules\Address;
 
 class Profile extends MyParentController
 {
@@ -22,11 +24,11 @@ class Profile extends MyParentController
         request()->validate([
             'first_name' => [new AlphaSpaces],
             'middle_name' => [new AlphaSpaces],
-            'last_name' => [new AlphaSpaces],
+            'last_name' => [new LastName],
             'parent_name' => [new AlphaSpaces],
             'phone_one' => ['numeric'],
             'phone_two' => ['numeric'],
-            'address' => [new AlphaNumSpaces],
+            'address' => [new Address],
             'city' => [new AlphaSpaces],
             'state' => [new AlphaSpaces],
             'pic' => ['image'],
