@@ -4,6 +4,8 @@
     @if (auth()->user()->role_id === 1 || auth()->user()->role_id === 2) {{-- super, admin --}}
         <a href="{{ route('users') }}" class="list-group-item list-group-action sidebarlink">USERS</a>
 
+        <a href="#" class="list-group-item list-group-action sidebarlink">CLASSES</a>
+
         <a href="#" class="list-group-item list-group-action sidebarlink">TEACHERS <i class="fas fa-arrows-alt-h"></i> CLASSES</a>
 
         <a href="#" class="list-group-item list-group-action sidebarlink">CLASSES <i class="fas fa-arrows-alt-h"></i> STUDENTS</a>

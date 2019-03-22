@@ -16,7 +16,7 @@ class UsersTableFakerSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(2,1000) as $index) {
+        foreach (range(6,1000) as $index) {
             $name = $faker->unique()->userName;
 
             if ($index < 9) {

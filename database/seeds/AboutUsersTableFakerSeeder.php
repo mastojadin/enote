@@ -16,10 +16,10 @@ class AboutUsersTableFakerSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1,999) as $index) {
-            $user_id = $index + 1;
+        foreach (range(1,994) as $index) {
+            $user_id = $index + 6;
 
-            if ($index < 8) {
+            if ($index < 14) {
                 DB::table('about_user')->insert([
                     'user_id' => $user_id,
                     'first_name' => $faker->firstName,
