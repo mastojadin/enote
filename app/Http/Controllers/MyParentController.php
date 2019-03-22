@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Alerts;
-use App\Helpers\Logs as L;
+use App\Models\Log as L;
 
 class MyParentController extends Controller
 {

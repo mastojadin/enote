@@ -16,7 +16,7 @@
 
     <div class="d-block p-5">
         @if (auth()->user()->role_id === 1)
-            <a href="#" class="btn btn-primary">LOGS</a>
+            <a href="{{ route('logs') }}" class="btn btn-primary">LOGS</a>
         @endif
     </div>
 @endsection

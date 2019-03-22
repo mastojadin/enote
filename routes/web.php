@@ -56,6 +56,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
         Route::post('/deleteRole', 'Roles@deleteRole')->name('deleteRole');
     });
 
+    Route::group(['middleware' => 'superCheck', 'prefix' => 'logs'], function () {
+        Route::get('/', 'Logs@index')->name('logs');
+        Route::post('/resolve', 'Logs@resolve')->name('resolveLog');
+    });
+
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', 'Profile@myprofile')->name('myprofile');
         Route::post('updateprofile', 'Profile@update')->name('updateAboutUser');
