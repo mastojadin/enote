@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('parts.back_button', ['whereTo' => 'dashboard'])
+
     <table class="table table-bordered m-5">
         <thead>
             <tr>
