@@ -51,9 +51,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
     Route::group(['middleware' => 'adminCheck', 'prefix' => 'subjects'], function () {
         Route::get('/', 'Subjects@index')->name('subjects');
-        Route::post('/saveSubject', 'Subject@saveSubject')->name('saveSubject');
-        Route::post('/updateSubject', 'Subject@updateSubject')->name('updateSubject');
-        Route::post('/deleteSubject', 'Subject@deleteSubject')->name('deleteSubject');
+        Route::post('/saveSubject', 'Subjects@saveSubject')->name('saveSubject');
+        Route::post('/updateSubject', 'Subjects@updateSubject')->name('updateSubject');
+        Route::post('/deleteSubject', 'Subjects@deleteSubject')->name('deleteSubject');
     });
 
     Route::group(['middleware' => 'superCheck', 'prefix' => 'roles'], function () {

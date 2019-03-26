@@ -5,7 +5,14 @@
         <form action="{{ route('saveSubject') }}" method="POST">
             <div class="form-group">
                 <label for="new_subject">Subject</label>
-                <input type="text" name="new_subject" id="new_subject" class="form-control">
+                <input
+                    type="text"
+                    name="new_subject"
+                    id="new_subject"
+                    class="form-control"
+                    autocomplete="off"
+                    pattern="[a-zA-Z ]+"
+                >
             </div>
 
             {{ csrf_field() }}
@@ -31,7 +38,14 @@
                         <td class="text-center">{{ $one->id }}</td>
                         <td class="text-center">
                             <form action="{{ route('updateSubject') }}" method="POST">
-                                <input type="text" name="update_subject" id="edit_subject" class="form-control">
+                                <input
+                                    type="text"
+                                    name="update_subject"
+                                    id="update_subject"
+                                    class="form-control"
+                                    autocomplete="off"
+                                    pattern="[a-zA-Z ]+"
+                                >
                         </td>
                         <td class="text-center">
                                     {{ csrf_field() }}
