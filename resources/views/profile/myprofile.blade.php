@@ -25,6 +25,8 @@
                 name="first_name"
                 id="first_name"
                 class="form-control"
+                autocomplete="off"
+                pattern="[a-zA-Z ]+"
                 @if ($user->getAboutUser != null)
                     value="{{ $user->getAboutUser->first_name }}"
                 @endif
@@ -38,6 +40,8 @@
                 name="middle_name"
                 id="middle_name"
                 class="form-control"
+                autocomplete="off"
+                pattern="[a-zA-Z ]+"
                 @if ($user->getAboutUser != null)
                     value="{{ $user->getAboutUser->middle_name }}"
                 @endif
@@ -51,6 +55,9 @@
                 name="last_name"
                 id="last_name"
                 class="form-control"
+                autocomplete="off"
+                pattern="[a-zA-Z'` ]+"
+                pattern=""
                 @if ($user->getAboutUser != null)
                     value="{{ $user->getAboutUser->last_name }}"
                 @endif
@@ -64,6 +71,9 @@
                 name="parent_name"
                 id="parent_name"
                 class="form-control"
+                autocomplete="off"
+                pattern="[a-zA-Z ]+"
+                pattern=""
                 @if ($user->getAboutUser != null)
                     value="{{ $user->getAboutUser->parent_name }}"
                 @endif
@@ -77,6 +87,9 @@
                 name="phone_one"
                 id="phone_one"
                 class="form-control"
+                autocomplete="off"
+                pattern="[0-9]+"
+                pattern=""
                 @if ($user->getAboutUser != null)
                     value="{{ $user->getAboutUser->phone_one }}"
                 @endif
@@ -90,6 +103,9 @@
                 name="phone_two"
                 id="phone_two"
                 class="form-control"
+                autocomplete="off"
+                pattern="[0-9]+"
+                pattern=""
                 @if ($user->getAboutUser != null)
                     value="{{ $user->getAboutUser->phone_two }}"
                 @endif
@@ -103,6 +119,9 @@
                 name="address"
                 id="address"
                 class="form-control"
+                autocomplete="off"
+                pattern="[a-zA-Z0-9- ]+"
+                pattern=""
                 @if ($user->getAboutUser != null)
                     value="{{ $user->getAboutUser->address }}"
                 @endif
@@ -116,6 +135,9 @@
                 name="city"
                 id="city"
                 class="form-control"
+                autocomplete="off"
+                pattern="[a-zA-Z ]+"
+                pattern=""
                 @if ($user->getAboutUser != null)
                     value="{{ $user->getAboutUser->city }}"
                 @endif
@@ -129,6 +151,9 @@
                 name="state"
                 id="state"
                 class="form-control"
+                autocomplete="off"
+                pattern="[a-zA-Z ]+"
+                pattern=""
                 @if ($user->getAboutUser != null)
                     value="{{ $user->getAboutUser->state }}"
                 @endif

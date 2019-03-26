@@ -49,6 +49,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
         Route::post('/deleteuser', 'Users@deleteUser')->name('deleteUser');
     });
 
+    Route::group(['middleware' => 'adminCheck', 'prefix' => 'subjects'], function () {
+        Route::get('/', 'Subjects@index')->name('subjects');
+        Route::post('/saveSubject', 'Subject@saveSubject')->name('saveSubject');
+        Route::post('/updateSubject', 'Subject@updateSubject')->name('updateSubject');
+        Route::post('/deleteSubject', 'Subject@deleteSubject')->name('deleteSubject');
+    });
+
     Route::group(['middleware' => 'superCheck', 'prefix' => 'roles'], function () {
         Route::get('/', 'Roles@index')->name('roles');
         Route::post('/saveRole', 'Roles@saveRole')->name('saveRole');
